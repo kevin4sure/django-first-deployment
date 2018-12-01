@@ -1,0 +1,47 @@
+<!--loads the path to your static files.-->
+    
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+
+            <!--website logo-->
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#MyTopNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="nav navbar-nav">
+                        <li style="padding-right: 15px"> <a class="navbar brand" style="font-family: 'Satisfy', cursive;font-size: 30px" href="">Muzec</a></li>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" id="MyTopNavBar">
+                <form class="navbar-form navbar-right" role="search" method="POST" action="{% url 'login' %}">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" value="">
+                        <input type="text" class="form-control" name="password" value="">
+                    </div>
+                    <button type="submit" class="btn btn-default">Log In</button>
+                </form>
+            </div>
+
+        </div>
+    </nav> 
+          
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <center>
+            <button type="submit" name="login_option" value="register" style="background:linear-gradient(#ffffff, #004d00, #001a00);color: white;border: none;border-radius: 50px ;padding-left: 3%;padding-right: 3%;margin: 15px;font-size: 20px;">
+                Register
+            </button>
+            <button type="submit" name="login_option" value="login" style="background:linear-gradient(#ffffff, #004d00, #001a00);color: white;border: none;border-radius: 50px ;padding-left: 3%;padding-right: 3%;margin: 15px;font-size: 20px;">
+                Login
+            </button>
+        </center>
+    </form>
+</body>
+
+
+

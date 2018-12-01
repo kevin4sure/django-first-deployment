@@ -1,0 +1,67 @@
+{% extends 'music/base.html' %}
+{% load staticfiles %}
+
+{% block codeblock %}
+    <div class="black-container">
+        {% if all_albums %}
+        <h1>Here are all my songs</h1>
+        <hr>
+        
+            
+                {% for i in all_albums %}
+                <div class="white-container">
+                <!--li><a href="/music/songs/{{ i.id }}">{{i}}</a></li-->
+                <a href="{% url 'music_detail' i.id %}">    
+                    <div class="content">
+                        <table>
+                            <tr><td colspan="3"><img src="{% static 'music/' %}{{i.album_logo}}" width="200"></td></tr>
+                            <tr><td colspan="3"><h3>{{i.artist}}</h3></a></td></tr>
+                            <tr><td colspan="3"><h5>{{i.album_title}}</h5></td></tr>
+                            <tr>
+                                <td>
+                                    <form action="{% url 'album_delete' i.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="album_id" value="{{i.id}}"/>
+                                        <button type="submit" style="background: none;border: none">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="{% url 'album_update' i.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="album_id" value="{{i.id}}"/>
+                                        <button type="submit" style="background: none;border: none">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="{% url 'music_index' %}" method="">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="album_id" value="{{i.id}}"/>
+                                        <button type="submit" style="background: none;border: none">
+                                            <span class="glyphicon glyphicon-star-empty"></span>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </a>    
+                </div>
+                
+                {% endfor %}
+            
+        </div>
+
+    </div>
+
+
+        <!--h1>Here are all my songs</h1-->
+        
+
+    {% else %}
+        <h1> Sorry! no albums here</h1>
+    {% endif %}
+{% endblock %}

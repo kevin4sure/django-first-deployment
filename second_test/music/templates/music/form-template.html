@@ -1,0 +1,23 @@
+
+{% for field in form %}
+<style>
+.white-container:hover{box-shadow: none}
+</style>
+    <div class="form-table">
+        <table>
+            <tr><td>{{ field.errors }}</td></tr>
+            <tr>
+                <td style="padding: 5% 15% 0% 5%;width:300px">
+                    <label>{{field.label_tag}}</label>
+                </td>
+                <td>
+                    {{ field }}
+                </td>
+            </tr>
+        </table>
+        
+
+    </div>
+
+
+{% endfor %}

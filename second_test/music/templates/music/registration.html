@@ -1,0 +1,57 @@
+{% extends 'music/base.html' %}
+{% load staticfiles %}
+{% block title %}Register user{% endblock %}
+{% block codeblock %}
+<!--style>
+    button{background:-webkit-repeating-linear-gradient()}
+    </style-->
+<div class="black-container">
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% form.as_p %}
+        {% if error_message %}
+            <p><strong>{{ error_message }}</strong></p>
+        {% endif %} 
+
+        <h1>Log In </h1><hr>
+        
+        <div class="form-table">
+        {% for fields in login %}
+        <table>
+            <tr><td>{{ fields.errors }}</td></tr>
+                <tr>
+                    <td style="padding: 5% 15% 0% 5%;width:300px">
+                        <label>{{fields.label_tag}}</label>
+                    </td>
+                    <td>
+                        {{ fields }}
+                    </td>
+                </tr>
+        </table>
+        
+        {% endfor %}
+        </div>
+            
+            <center><button type="submit" style="background:linear-gradient(#ffffff, #004d00, #001a00);color: white;border: none;border-radius: 50px ;padding-left: 3%;padding-right: 3%;margin: 15px;font-size: 20px;">
+                        Log In
+                    </button>
+            </center>
+        
+        
+    </form>    
+    
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if error_message %}
+            <p><strong>{{ error_message }}</strong></p>
+        {% endif %} 
+        <h1>Create new Account</h1><hr>
+        {% include 'music/form-template.html' %}
+        <div class="form-table">
+        <center><button type="submit" style="background:linear-gradient(#ffffff, #004d00, #001a00);color: white;border: none;border-radius: 50px ;padding-left: 3%;padding-right: 3%;margin: 15px;font-size: 20px;">Submit</button></center>
+        </div>    
+    </form>
+</div>
+
+{% endblock %}

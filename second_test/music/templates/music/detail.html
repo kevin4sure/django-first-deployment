@@ -1,0 +1,86 @@
+{% extends 'music/common.html' %}
+
+{% load staticfiles %}
+{% block content %}
+<br><br>
+<div class="row-fluid" style="padding-left:100">
+        <div class="span9">
+            <div class="general-posts">
+                <div class="user-info" style="border-radius:15px 15px 15px 15px">
+                    <div class="read-more">
+                        <h1 style="color:#ffffff; font-size: 36px; line-height: 24px; padding-top:5px;padding-bottom: 5px; padding-left:15px;text-transform: uppercase; font-weight:bold;">
+                            {{alb}}
+                        </h1>
+                    </div>
+                    <table> 
+                    <tr>
+                        <td rowspan="3">
+                                <img style="width: 200px" src="{% static 'music/' %}{{alb.album_logo}}" alt="" class="image-spacing"/>
+                        </td>
+                        <td>
+                            Artist:
+                        </td>
+                        <td style="width:60%">
+                            {{ alb.artist }}
+                        </td>
+                        <tr>
+                            <td>Title:</td> 
+                            <td>{{ alb.album_title }}</td>
+                        </tr>
+                        <tr>
+                        <td>Genre:</td> 
+                        <td>{{ alb.genre }}</td>
+                    </tr>
+                    </tr>
+                    <!--p class="no-space">Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate. </p-->
+                    </table>    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid" style="padding-left:100">
+            <div class="span9">
+                <div class="general-posts">
+                    <div class="user-info">
+                            {% if error_mes %}
+                            <h1><strong>{{error_mes}}</strong></h1>
+                            {% endif %}
+                            {% if not alb.song_set.all %}
+                            <h1 style="color: red;font-size:32px">
+                                {{no_song_err}}
+                            </h1> 
+                            {% endif %}
+                            <div class="sidebar">
+                                    {% for song in alb.song_set.all %}
+                                    <ul>
+                                        <li><a href="#" style="font-size: 22px">{{song.song_title}}
+                                                {% if song.is_favourite %}
+                                                    <img src="{% static 'music/images/goldstar.jpg'%}" style="width:15px"/>
+                                                {% endif %}
+                                            </a></li>
+                                        <!--li class="no-border"><a href="#">Praesent placerat risus quis</a></li-->
+                                    </ul>
+                                    {% endfor %}
+                                </div>
+                    </div>
+                </div>
+            </div>
+    </div>                
+
+    
+
+<!--form action="{#% url 'music_favourite' alb.id %}" method="post">
+{% csrf_token %}
+{% for song in alb.song_set.all %}
+<input type="checkbox" id="song{{forloop.counter}}" name="song" value="{{song.id}}">
+<label for="song{{forloop.counter}}">
+    {{song.song_title}}
+    {% if song.is_favourite %}
+        <img src="goldstar.jpg"/>
+    {% endif %}
+</label><br>
+{% endfor %}
+<input type="submit" value="Favourite">        
+</form-->     
+
+{% endblock %}

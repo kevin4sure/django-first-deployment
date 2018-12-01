@@ -1,0 +1,58 @@
+{% extends 'music/common.html'%}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+{% block content %}
+<br>
+<div class="container">
+        <div class="row-fluid">
+            <div class="span9">
+                    <div class="sidebar">
+                            {% if all_albums %}
+                            <h1>Here are all my songs</h1>
+                            
+                            <ul>
+                                {% for i in all_albums %}
+                                <!--li><a href="/music/songs/{{ i.id }}">{{i}}</a></li-->
+                                <li><a  href="{% url 'music_detail' i.id %}">{{i}}</a></li>
+                                {% endfor %}
+                            </ul>
+                            {% else %}
+                                <h1> Sorry! no albums here</h1>
+                            {% endif %}        
+                    </div>
+                </div>
+
+                <div class="span3">
+                        <div class="sidebar">
+                            <h1>search</h1>
+                            <div class="input-append">
+                                <form role="search" method="get" action="#">
+                                        <input class="span9" type="text" name="q" value="">&nbsp;&nbsp;
+                                        <button type="submit" class="btn btn-default">Search</button>       
+                                </form>
+                            </div>   
+                        </div>
+                        </div>
+                    
+                
+                <div class="span3">
+                    <div class="sidebar">
+                        <div class="container">
+                            <a href="{% url 'music_index' %}">
+                                <div class="site-name" style="padding-top: 0;position: inherit">
+                                    <h1 style="padding:5px 15px 5px 5px;color: #fff;border-radius: 50px;width: fit-content;">
+                                        <!--div style="font-size: 30px;display: inline-block;" >+</div-->
+                                        &nbsp;&nbsp;+ Add New Album
+                                    </h1>
+                                </div>
+                            </a>
+                        </div> 
+                    </div>
+                </div>
+        </div>
+</div>        
+{% endblock %}

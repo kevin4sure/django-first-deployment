@@ -1,0 +1,22 @@
+{% extends 'music/base.html' %}
+{% load staticfiles %}
+{% block title %}User Login{% endblock %}
+{% block codeblock %}
+<!--style>
+    button{background:-webkit-repeating-linear-gradient()}
+    </style-->
+<div class="black-container">
+    {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}    
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1>User Login</h1><hr>
+        {% include 'music/form-template.html' %}
+        <div class="form-table">
+        <center><button type="submit" style="background:linear-gradient(#ffffff, #004d00, #001a00);color: white;border: none;border-radius: 50px ;padding-left: 3%;padding-right: 3%;margin: 15px;font-size: 20px;">Login</button></center>
+        </div>    
+    </form>
+</div>
+
+{% endblock %}

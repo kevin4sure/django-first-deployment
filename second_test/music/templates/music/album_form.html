@@ -1,0 +1,19 @@
+{% extends 'music/base.html' %}
+{% load staticfiles %}
+{% block title %}Add New Album{% endblock %}
+{% block codeblock %}
+<!--style>
+    button{background:-webkit-repeating-linear-gradient()}
+    </style-->
+<div class="black-container">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1>Add New Album here</h1><hr>
+        {% include 'music/form-template.html' %}
+        <div class="form-table">
+        <center><button type="submit" style="background:linear-gradient(#ffffff, #004d00, #001a00);color: white;border: none;border-radius: 50px ;padding-left: 3%;padding-right: 3%;margin: 15px;font-size: 20px;">Submit</button></center>
+        </div>    
+    </form>
+</div>
+
+{% endblock %}
